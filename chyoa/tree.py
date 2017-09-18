@@ -4,6 +4,8 @@ from pprint import pprint
 import json
 import re
 import os
+import urllib.parse
+
 
 class TreeCharset(object):
     def __init__(self, trunk, intersection, branch, corner):
