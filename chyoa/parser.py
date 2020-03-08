@@ -114,12 +114,10 @@ class ChapterParser(HTMLParser):
                 if key == "href":
                     if self.in_choices and not value.endswith("login"):
                         self.current_choice = value
-                    else:
-                        match = CHYOA_USER_REGEX.fullmatch(value)
-                        if match:
-                            self.author = match.group(1)
         elif tag == "h2":
             self.in_h2 = True
+        elif tag == "img" and 'avatar' in dict(attrs)['src']:
+                self.author = dict(attrs)['alt']
         elif tag == "img" and self.in_story_header and 'cover' in dict(attrs)["src"]:
             self.cover_url = dict(attrs)["src"]
         elif self.in_body:
